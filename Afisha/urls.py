@@ -19,6 +19,11 @@ from movie_app import views
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('api/v1/directors', views.directors_view),
+    path('api/v1/directors/<int:id>/', views.directors_item_view),
     path('api/v1/movie', views.movie_view),
-    path('api/v1/review', views.review_view)
+    path('api/v1/movie/<int:id>/', views.movie_item_view),
+    path('api/v1/review', views.review_view),
+    path('api/v1/review/<int:id>/', views.review_item_view),
+    path('api/v1/movie/review', views.movie_review_view),
+
 ]

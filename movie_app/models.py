@@ -29,7 +29,7 @@ class Movie(models.Model):
 
 class Review(models.Model):
     text = models.TextField(blank=False, null=False)
-    movies = models.ForeignKey(Movie, on_delete=models.PROTECT, null=True)
+    movies = models.ForeignKey(Movie, on_delete=models.CASCADE, null=True, blank=True)
     stars = models.IntegerField(default=0,
                                 blank=True,
                                 validators=[MaxValueValidator(5)])

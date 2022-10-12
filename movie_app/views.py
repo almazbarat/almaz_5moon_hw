@@ -5,6 +5,47 @@ ReviewListSerializer, MovieReviewSerializer, MovieCreateSerializer, MovieUpdateS
 DirectorBaseValidateSerializer, ReviewBaseValidateSerializer
 from .models import Director, Movie, Review, MovieReview
 from rest_framework import status
+from rest_framework.permissions import IsAuthenticated
+from rest_framework.generics import ListCreateAPIView, RetrieveUpdateDestroyAPIView
+from rest_framework.pagination import PageNumberPagination
+from rest_framework.viewsets import ModelViewSet
+
+
+class DirectorListCreateAPIView(ListCreateAPIView):
+    queryset = Director.objects.all()
+    serializer_class = DirectorListSerializer
+    pagination_class = PageNumberPagination
+
+class DirectorItemUpdateDeleteAPIView(RetrieveUpdateDestroyAPIView):
+    queryset = Director.objects.all()
+    serializer_class = DirectorListSerializer
+    lookup_field = 'id'
+
+
+class MovieModelViewSet(ModelViewSet):
+    queryset = Movie.objects.all()
+    serializer_class = MovieListSerializer
+    pagination_class = PageNumberPagination
+    lookup_field = 'id'
+
+
+class ReviewListCreateAPIView(ListCreateAPIView):
+    queryset = Review.objects.all()
+    serializer_class = ReviewListSerializer
+    pagination_class = PageNumberPagination
+
+class ReviewItemUpdateDeleteAPIView(RetrieveUpdateDestroyAPIView):
+    queryset = Review.objects.all()
+    serializer_class = ReviewListSerializer
+    lookup_field = 'id'
+
+
+class MRModelViewSet(ModelViewSet):
+    queryset = MovieReview.objects.all()
+    serializer_class = MovieReviewSerializer
+    pagination_class = PageNumberPagination
+    lookup_field = 'id'    
+
 
 @api_view(['GET', 'POST'])
 def directors_view(request):

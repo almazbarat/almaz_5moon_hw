@@ -25,5 +25,27 @@ urlpatterns = [
     path('api/v1/review', views.review_view),
     path('api/v1/review/<int:id>/', views.review_item_view),
     path('api/v1/movie/review', views.movie_review_view),
-    path('api/v1/users/', include('users.urls'))
+    path('api/v1/users/', include('users.urls')),
+    path('api/v1/directors_cbv/', views.DirectorListCreateAPIView.as_view()),
+    path('api/v1/directors_cbv/<int:id>/', views.DirectorItemUpdateDeleteAPIView.as_view()),
+    path('api/v1/movie_cbv/', views.MovieModelViewSet.as_view({
+        'get': 'list',
+        'post': 'create'
+    })),
+    path('api/v1/movie_cbv/<int:id>/', views.MovieModelViewSet.as_view({
+        'get': 'retrieve',
+        'put': 'update',
+        'delete': 'destroy'
+    })),
+    path('api/v1/review_cbv/', views.ReviewListCreateAPIView.as_view()),
+    path('api/v1/review_cbv/<int:id>/', views.ReviewItemUpdateDeleteAPIView.as_view()),
+        path('api/v1/mr_cbv/', views.MRModelViewSet.as_view({
+        'get': 'list',
+        'post': 'create'
+    })),
+    path('api/v1/mr_cbv/<int:id>/', views.MRModelViewSet.as_view({
+        'get': 'retrieve',
+        'put': 'update',
+        'delete': 'destroy'
+    }))
 ]

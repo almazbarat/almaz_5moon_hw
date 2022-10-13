@@ -16,6 +16,10 @@ Including another URLconf
 from django.contrib import admin
 from django.urls import path, include
 from movie_app import views
+from . import swagger
+from django.conf import settings
+from django.conf.urls.static import static
+
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('api/v1/directors', views.directors_view),
@@ -48,4 +52,7 @@ urlpatterns = [
         'put': 'update',
         'delete': 'destroy'
     }))
-]
+]+ static(settings.STATIC_URL, document_root=settings.STATIC_ROOT)
+
+urlpatterns+=swagger.urlpatterns
+
